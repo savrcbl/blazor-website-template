@@ -1,0 +1,19 @@
+﻿@using PortfolioTemplate.Models
+
+<a href="/projects/@Project.Slug" class="project-card">
+    <h2>@Project.Name</h2>
+
+    <p>@Project.Description</p>
+
+    <div class="project-tags">
+        @foreach (var technology in Project.Technologies)
+        {
+            <span>@technology</span>
+        }
+    </div>
+</a>
+
+@code {
+    [Parameter]
+    public Project Project { get; set; } = new();
+}

@@ -1,0 +1,145 @@
+@page "/"
+@using PortfolioTemplate.Models
+
+<PageTitle>Your Name</PageTitle>
+
+<section id="home" class="hero">
+    <p class="eyebrow">YOUR JOB TITLE</p>
+
+    <h1>Hi, I'm Your Name.</h1>
+
+    <h2>your-handle on github</h2>
+
+    <h2>A short one-line tagline about what you do.</h2>
+
+    <p class="description">
+        A couple of sentences introducing yourself: what you work on,
+        what you're good at, and what kind of problems you enjoy solving.
+    </p>
+
+    <div class="buttons">
+        <a href="#projects" class="primary-button">View Projects</a>
+        <a href="#about" class="secondary-button">About Me</a>
+    </div>
+</section>
+
+<section id="about" class="page-container">
+    <h1>About Me</h1>
+
+    <p>
+        Write a paragraph about your background, focus areas, and what
+        drives your work. Keep it specific to you rather than generic.
+    </p>
+
+    <p>
+        Add a second paragraph here about the tools and technologies you
+        use most, and anything you're currently exploring or learning.
+    </p>
+</section>
+
+<section id="tech-stack" class="page-container">
+    <h1>Tech Stack</h1>
+
+    <p>
+        Technologies and tools I work with.
+    </p>
+
+    <div class="tech-stack-groups">
+        <div class="tech-group">
+            <h3><span aria-hidden="true">💻</span> Languages</h3>
+            <div class="tech-pills">
+                <span>Language 1</span>
+                <span>Language 2</span>
+                <span>Language 3</span>
+            </div>
+        </div>
+
+        <div class="tech-group">
+            <h3><span aria-hidden="true">⚙️</span> Frameworks &amp; Development</h3>
+            <div class="tech-pills">
+                <span>Framework 1</span>
+                <span>Framework 2</span>
+                <span>Framework 3</span>
+            </div>
+        </div>
+
+        <div class="tech-group">
+            <h3><span aria-hidden="true">🧪</span> Other Skills</h3>
+            <div class="tech-pills">
+                <span>Skill 1</span>
+                <span>Skill 2</span>
+            </div>
+        </div>
+
+        <div class="tech-group">
+            <h3><span aria-hidden="true">🗄️</span> Databases &amp; Tools</h3>
+            <div class="tech-pills">
+                <span>Tool 1</span>
+                <span>Tool 2</span>
+                <span>Git</span>
+                <span>GitHub</span>
+            </div>
+        </div>
+
+        <div class="tech-group">
+            <h3><span aria-hidden="true">🔭</span> Currently Exploring</h3>
+            <div class="tech-pills">
+                <span>Something new you're learning</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="page-container">
+    <h1>Projects</h1>
+
+    <p>
+        Some of the things I've built and worked on.
+    </p>
+
+    <div class="projects-grid">
+        @foreach (var project in projects)
+        {
+            <ProjectCard Project="@project" />
+        }
+    </div>
+</section>
+
+<section id="contact" class="page-container">
+    <h1>Contact</h1>
+
+    <p>
+        Have a project, a question, or just want to say hi? Reach out below.
+    </p>
+
+    <div class="contact-links">
+        <!-- TODO: replace with your real email, LinkedIn, and GitHub -->
+        <a class="contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=you@example.com&su=Portfolio%20Contact" target="_blank" rel="noopener">
+            <i class="bi bi-envelope" aria-hidden="true"></i>
+            <span>
+                <strong>Email</strong>
+                you@example.com
+            </span>
+        </a>
+
+        <a class="contact-link" href="https://www.linkedin.com/in/your-handle/" target="_blank" rel="noopener">
+            <i class="bi bi-linkedin" aria-hidden="true"></i>
+            <span>
+                <strong>LinkedIn</strong>
+                linkedin.com/in/your-handle
+            </span>
+        </a>
+
+        <a class="contact-link" href="https://github.com/your-handle" target="_blank" rel="noopener">
+            <i class="bi bi-github" aria-hidden="true"></i>
+            <span>
+                <strong>GitHub</strong>
+                github.com/your-handle
+            </span>
+        </a>
+    </div>
+</section>
+
+@code {
+    private List<Project> projects = ProjectRepository.GetAll();
+}

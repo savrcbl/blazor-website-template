@@ -1,0 +1,64 @@
+﻿@page "/projects/{Slug}"
+@using PortfolioTemplate.Models
+
+<PageTitle>@Project?.Name | Your Name</PageTitle>
+
+<div class="page-container">
+
+    @if (Project is null)
+    {
+        <h1>Project Not Found</h1>
+
+        <p>
+            Sorry, I couldn't find that project.
+        </p>
+
+        <a href="/projects">Back to Projects</a>
+    }
+    else
+    {
+        <h1>@Project.Name</h1>
+
+        <p>@Project.Description</p>
+
+        <h3>Technologies</h3>
+
+        <div class="project-tags">
+            @foreach (var technology in Project.Technologies)
+            {
+                <span>@technology</span>
+            }
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(Project.Url))
+        {
+            <br />
+            <a href="@Project.Url" class="primary-button" target="_blank" rel="noopener">
+                <i class="bi bi-github" aria-hidden="true"></i>
+                View on GitHub
+            </a>
+        }
+
+        <br />
+
+        <a href="/projects">← Back to Projects</a>
+    }
+
+</div>
+
+@code {
+
+    [Parameter]
+    public string Slug { get; set; } = "";
+
+    private Project? Project;
+
+    protected override void OnInitialized()
+    {
+        Project = projects.FirstOrDefault(
+            p => p.Slug.Equals(Slug, StringComparison.OrdinalIgnoreCase)
+        );
+    }
+
+    private List<Project> projects = ProjectRepository.GetAll();
+}
